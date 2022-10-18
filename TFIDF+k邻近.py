@@ -1,4 +1,4 @@
-from sklearn.metrics import accuracy_score
+
 from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
 
@@ -74,6 +74,22 @@ KNClassifier.fit(X_train,y_train)
 
 y_pred=KNClassifier.predict(X_test_std)
 
-print(accuracy_score(y_pred,y_test));
+
+np.save("y_pred1.npy", y_pred);
+np.save("y_test1.npy", y_test);
 
 
+y_pred=np.load("y_pred1.npy");
+y_test=np.load("y_test1.npy");
+
+
+from sklearn.metrics import accuracy_score,precision_score,recall_score,f1_score
+accuracy=accuracy_score(y_pred,y_test);
+
+precision=precision_score(y_pred,y_test);
+
+recall=recall_score(y_pred,y_test);
+
+f1=f1_score(y_pred,y_test);
+
+print(accuracy,precision,recall,f1);
